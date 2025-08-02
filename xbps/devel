@@ -1,0 +1,14 @@
+rust
+cargo
+git
+cmake
+ninja
+meson
+pkg-config
+
+base-devel
+alsa-lib-devel
+libX11-devel
+libXcursor-devel
+libXi-devel
+libXrender-devel

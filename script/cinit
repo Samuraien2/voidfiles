@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Default mode
+mode="simple"
+name=""
+path="$PWD"
+
+while [[ $# -gt 0 ]]; do
+	case "$1" in
+		-s)
+			mode="simple"
+			;;
+		-b)
+			mode="big"
+			;;
+		*)
+			name="$1"
+			path="$PWD/$1"
+			;;
+	esac
+	shift
+done
+
+if [ -e "$name" ]; then
+	echo "[!] Project '$name' already exists!"
+	exit 1
+fi
+
+echo "Creating new $mode project: '$name'"
+echo "Path: ${path/#$HOME/~}"
+
+if [ -n "$name" ]; then
+	mkdir $name
+	cp "$HOME/Templates/$mode/"* $name
+else
+	cp "$HOME/Templates/$mode/"* .
+fi

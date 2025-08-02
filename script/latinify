@@ -1,0 +1,33 @@
+#!/bin/bash
+
+declare -A latin_small_caps=(
+    [a]='ᴀ' [b]='ʙ' [d]='ᴅ' [e]='ᴇ'
+    [f]='ꜰ' [g]='ɢ' [h]='ʜ' [i]='ɪ'
+	[j]='ᴊ' [k]='ᴋ' [l]='ʟ' [m]='ᴍ'
+	[n]='ɴ' [p]='ᴘ' [q]='ǫ' [r]='ʀ'
+	[t]='ᴛ' [u]='ᴜ' [w]='ᴡ' [y]='ʏ'
+)
+
+declare -A subscripts=(
+    [0]='₀' [1]='₁' [2]='₂' [3]='₃' [4]='₄'
+    [5]='₅' [6]='₆' [7]='₇' [8]='₈' [9]='₉'
+)
+
+input="$1"
+output=""
+
+for (( i=0; i<${#input}; i++ )); do
+    char="${input:$i:1}"
+    lower_char=$(echo "$char" | tr 'A-Z' 'a-z')
+
+    if [[ ${latin_small_caps[$lower_char]} ]]; then
+        output+="${latin_small_caps[$lower_char]}"
+    elif [[ ${subscripts[$char]} ]]; then
+        output+="${subscripts[$char]}"
+    else
+        output+="$char"
+    fi
+done
+
+echo "$output"
+

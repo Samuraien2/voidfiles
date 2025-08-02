@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "COMMAND SYNTAX:"
+echo "  ln -s SOURCE SYMBOLIC_LINK"
