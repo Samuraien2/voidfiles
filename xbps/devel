@@ -12,3 +12,4 @@ libX11-devel
 libXcursor-devel
 libXi-devel
 libXrender-devel
+libglvnd-devel
