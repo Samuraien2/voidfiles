@@ -6,8 +6,5 @@ xcb-util-xrm-devel
 libev-devel
 yajl-devel
 startup-notification-devel
-meson
-
-
 
 xcb-util-cursor
