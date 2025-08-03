@@ -10,14 +10,11 @@ xclip
 zip
 openjdk21
 ripgrep
-nvidia
-nvidia-libs
-nvidia-dkms
 xf86-input-libinput
 dunst
 vulkan-loader
-vulkan-Headers
-vulkan-ValidationLayers
+Vulkan-Headers
+Vulkan-ValidationLayers
 vulkan-loader-32bit
 github-cli
 firefox
