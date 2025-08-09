@@ -3,21 +3,16 @@
 HISTCONTROL=ignoreboth
 
 shopt -s histappend
+shopt -s globstar
+shopt -s checkwinsize
 
 HISTSIZE=500
 HISTFILESIZE=0
 
-shopt -s checkwinsize
-
-# ** for matching all files and zero or more directioes and subdirectories.
-#shopt -s globstar
-
-# make less more friendly for non-text input files, see lesspipe(1)
-#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
 PS1='\[\e[1;34m\]\w\[\e[m\] '
 
 alias v='vim'
+alias suv='sudo vim'
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
