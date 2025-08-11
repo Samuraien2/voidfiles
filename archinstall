@@ -1,0 +1,66 @@
+#!/bin/bash
+echo "============= ARCH LINUX INSTALLER ================="
+
+while true; do
+	printf "\e[33mChoose disk to DISINTEGRATE:\e[m\n"
+	lsblk -dn -o NAME,SIZE,MODEL
+	printf "> "
+	read diskname
+
+	if lsblk -dn -o NAME | grep -qx "$diskname"; then
+		break
+	fi
+done
+
+disk=/dev/$diskname
+
+if [[ $diskname == nvme*n* ]]; then
+	disktype=NVME
+	diskp1="$disk"p1
+	diskp2="$disk"p2
+	diskp3="$disk"p3
+elif [[ $diskname == sd* ]]; then
+	disktype=SATA
+	diskp1="$disk"1
+	diskp2="$disk"2
+	diskp3="$disk"3
+else
+	echo "unknown disk type"
+	break
+fi
+
+echo "Disk chosen: $diskname [$disktype]"
+echo "Formatting disk..."
+echo "$diskp1: 256M [EFI System]"
+echo "$diskp2: 4G   [Linux Swap]"
+echo "$diskp3: ...  [Linux Filesystem]"
+
+timedatectl set-timezone Europe/Oslo
+
+parted -s $disk mklabel gpt
+
+parted -s $disk mkpart ESP fat32 1MiB 257MiB
+parted -s $disk set 1 boot on
+
+parted -s $disk mkpart primary linux-swap 257MiB 4353MiB
+parted -s $disk mkpart primary ext4 4353MiB 100%
+
+mkfs.vfat -F32 $diskp1
+mkswap $diskp2
+mkfs.ext4 $diskp3
+
+mount $diskp3 /mnt
+mkdir -p /mnt/boot/efi
+mount $diskp1 /mnt/boot/efi
+
+swapon $diskp2i
+
+echo ""
+echo "Disk mounted at:"
+echo "$diskp1: /mnt/boot/efi"
+echo "$diskp2: swap"
+echo "$diskp3: /mnt"
+
+#pacstrap -K /mnt base linux linux-firmware grub gvim
+
+#arch-chroot /mnt /bin/bash -c 
