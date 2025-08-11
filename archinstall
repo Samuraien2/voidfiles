@@ -1,5 +1,9 @@
 #!/bin/bash
-echo "============= ARCH LINUX INSTALLER ================="
+echo "================= ARCH LINUX INSTALLER ================="
+hostname="bat"
+user="s2"
+pass="password"
+root_pass="password"
 
 while true; do
 	printf "\e[33mChoose disk to DISINTEGRATE:\e[m\n"
@@ -26,7 +30,7 @@ elif [[ $diskname == sd* ]]; then
 	diskp3="$disk"3
 else
 	echo "unknown disk type"
-	break
+	exit 1
 fi
 
 echo "Disk chosen: $diskname [$disktype]"
@@ -40,7 +44,7 @@ timedatectl set-timezone Europe/Oslo
 parted -s $disk mklabel gpt
 
 parted -s $disk mkpart ESP fat32 1MiB 257MiB
-parted -s $disk set 1 boot on
+parted -s $disk set 1 esp on
 
 parted -s $disk mkpart primary linux-swap 257MiB 4353MiB
 parted -s $disk mkpart primary ext4 4353MiB 100%
@@ -53,7 +57,7 @@ mount $diskp3 /mnt
 mkdir -p /mnt/boot/efi
 mount $diskp1 /mnt/boot/efi
 
-swapon $diskp2i
+swapon $diskp2
 
 echo ""
 echo "Disk mounted at:"
@@ -61,6 +65,24 @@ echo "$diskp1: /mnt/boot/efi"
 echo "$diskp2: swap"
 echo "$diskp3: /mnt"
 
-#pacstrap -K /mnt base linux linux-firmware grub gvim
+pacstrap -K /mnt base linux linux-firmware grub gvim efibootmgr dhcpcd
 
-#arch-chroot /mnt /bin/bash -c 
+arch-chroot /mnt /bin/bash -c "
+ln -sf /usr/share/zoneinfo/Europe/Oslo /etc/localtime
+hwclock --systohc
+echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen
+locale-gen
+echo 'LANG=en_US.UTF-8' > /etc/locale.conf
+echo $hostname > /etc/hostname
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
+grub-mkconfig -o /boot/grub/grub.cfg
+systemctl enable dhcpcd
+echo root:$root_pass | chpasswd
+useradd -m -G wheel $user
+echo $user:$pass | chpasswd
+echo '%wheel ALL=(ALL) ALL' >> /etc/sudoers
+"
+
+umount -R /mnt
+echo "Installation complete."
+echo "Eject USB before rebooting."
