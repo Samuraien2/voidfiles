@@ -11,7 +11,6 @@ HISTFILESIZE=0
 
 PS1='\[\e[1;34m\]\w\[\e[m\] '
 
-alias v='vim'
 alias suv='sudo vim'
 
 alias ls='ls --color=auto'
@@ -22,28 +21,20 @@ alias la='ls -A'
 alias lx='ls --color=never'
 
 alias dl='cd ~/dl; ls'
-alias shut='sudo poweroff; exit'
-alias rebo='sudo reboot; exit'
+alias shut='sudo poweroff'
+alias rebo='sudo reboot'
 
 alias update='sudo xbps-install -Su'
 alias inst='sudo xbps-install'
 
 alias cb='xclip -selection clipboard'
 
-alias procs='ps -aux'
+alias procs='ps aux'
 
 alias ?='which'
 alias ..='cd ..'
 
-instf() {
-	if [ -f "$1" ]; then
-		sudo xbps-install $(< $1)
-	else
-		echo "$1 is not a file!"
-	fi
-}
-
-export PATH="$HOME/script:$HOME/.local/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -52,4 +43,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-#. "$HOME/.cargo/env"

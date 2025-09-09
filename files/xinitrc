@@ -1,0 +1,19 @@
+#!/bin/sh
+[ -z "$DBUS_SESSION_BUS_ADDRESS" ] && eval $(dbus-launch --sh-syntax --exit-with-session)
+
+export XDG_SESSION_TYPE=x11
+export XDG_CURRENT_DESKTOP=i3
+export DESKTOP_SESSION=i3
+
+export XDG_RUNTIME_DIR=/run/user/1000
+export EDITOR=v
+export BROWSER=firefox
+export TERMINAL=alacritty
+
+pipewire &
+pipewire-pulse &
+wireplumber &
+
+setxkbmap no -variant nodeadkeys
+
+exec i3

@@ -6,13 +6,7 @@ gvim
 dbus
 alacritty
 xclip
-zip
-ripgrep
 xf86-input-libinput
-vulkan-loader
-Vulkan-Headers
-Vulkan-ValidationLayers
-vulkan-loader-32bit
 github-cli
 firefox
 libglvnd

@@ -1,0 +1,28 @@
+#!/bin/bash
+if [ $# -eq 0 ]; then
+    echo "Usage: instf <file1> [file2 ...]"
+    exit 1
+fi
+
+packages=()
+
+for file in "$@"; do
+    if [ -f "$file" ]; then
+        while IFS= read -r pkg; do
+            [[ -z "$pkg" || "$pkg" =~ ^# ]] && continue
+
+			# only add if pkg isn't installed
+			xbps-query -l | grep -qE "^ii ${pkg}-" || packages+=("$pkg")
+        done < "$file"
+    else
+        echo "Error: '$file' is not a file!"
+        exit 1
+    fi
+done
+
+if [ ${#packages[@]} -eq 0 ]; then
+    exit 1
+fi
+
+echo "Installing packages: ${packages[*]}"
+sudo xbps-install -Sy "${packages[@]}"
