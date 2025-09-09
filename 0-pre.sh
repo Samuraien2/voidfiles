@@ -4,5 +4,5 @@ if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
 	exit 1
 fi
 
-cp -r home/.bashrc bin/ ~
+cp -r files/.bashrc bin/ ~
 . ~/.bashrc
