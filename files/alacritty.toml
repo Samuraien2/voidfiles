@@ -1,0 +1,12 @@
+[font]
+size = 10.0
+
+[font.normal]
+family = "JetBrainsMonoNL Nerd Font Mono"
+style = "Regular"
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+padding = { x = 3, y = 3 }

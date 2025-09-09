@@ -7,7 +7,8 @@ shopt -s globstar
 shopt -s checkwinsize
 
 HISTSIZE=500
-HISTFILESIZE=0
+HISTFILESIZE=500
+HISTFILE=~/.cache/bash_hst
 
 PS1='\[\e[1;34m\]\w\[\e[m\] '
 
