@@ -2,13 +2,10 @@ set $mod Mod4
 
 font pango:monospace 8
 
-#exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xset -b
 exec --no-startup-id feh --bg-scale img/thumb.jpg
 
-#exec --no-startup-id sudo mouse-remap
-
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+#exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 set $refresh_bar pkill -SIGUSR1 i3stat
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 5%+ && $refresh_bar
@@ -16,14 +13,10 @@ bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 5%- && $refr
 bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle && $refresh_bar
 bindsym XF86AudioMicMute exec --no-startup-id amixer set Master toggle && $refresh_bar
 
-# Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# move tiling windows via drag & drop by left-clicking into the title bar,
-# or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
 
-# kill focused window
 bindsym $mod+q kill
 
 bindsym $mod+Return exec alacritty
