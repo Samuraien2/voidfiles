@@ -1,4 +1,0 @@
-#!/bin/bash
-pkg=$1
-
-xbps-query -l | grep -qE "^ii ${pkg}-" || echo "$pkg is NOT installed"
