@@ -11,7 +11,8 @@ append() {
 	echo -e "\e[33m$2 \e[90m+= \e[32m\"$1\"\e[m"
 }
 
-cp "files/rc.local" /etc/rc.local
+cp files/rc.local /etc/rc.local
+cp files/vimrc /etc/vimrc.local
 
 read -p "rc.local: /run/user/1000? [y/N] " run_user_1000
 if [ "$run_user_1000" = y ]; then
