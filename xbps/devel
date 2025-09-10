@@ -1,6 +1,7 @@
 rust
 cargo
 git
+github-cli
 cmake
 ninja
 meson
