@@ -1,0 +1,4 @@
+#!/bin/sh
+[ -f nob ] && exec ./nob
+[ -f nob.c ] && cc nob.c -o nob && exec ./nob
+echo "nob not found"
