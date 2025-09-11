@@ -3,3 +3,5 @@ Name=FreeTube
 Exec=opt/freetube/freetube
 Terminal=false
 Type=Application
+Icon=img/youtube.png
+# https://www.youtube.com/s/desktop/1a8d73a2/img/favicon_144x144.png
