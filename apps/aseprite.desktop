@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Aseprite
+Exec=opt/aseprite/aseprite
+Terminal=false
+Type=Application
+Icon=opt/aseprite/data/icons/ase64.png

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Vesktop (Discord)
+Exec=opt/vesktop/vesktop
+Terminal=false
+Type=Application
+Icon=img/discord.jpg
