@@ -12,13 +12,18 @@ append() {
 }
 
 cp files/rc.local /etc/rc.local
-cp files/vimrc /etc/vimrc.local
 
 read -p "rc.local: /run/user/1000? [y/N] " run_user_1000
 if [ "$run_user_1000" = y ]; then
 	append "mkdir -p /run/user/1000" /etc/rc.local
+	append "chown s2:s2 /run/user/1000" /etc/rc.local
+	append "chmod 0700 /run/user/1000" /etc/rc.local
 fi
 
+read -p "install /etc/vimrc.local? [Y/n] " install_vimrc
+if [ "$install_vimrc" != "n" ]; then
+	cp files/vimrc /etc/vimrc.local
+fi
 
 rm -f /etc/xbps.d/*
 
