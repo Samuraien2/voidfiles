@@ -11,8 +11,9 @@ HISTFILESIZE=500
 HISTFILE=~/.cache/bash_hst
 
 PS1='\[\e[1;34m\]\w\[\e[m\] '
+# PROMPT_COMMAND='[ $? -ne 0 ] && PS1="\[\e[1;31m\]\w\[\e[m\] " || PS1="\[\e[1;34m\]\w\[\e[m\] "'
 
-alias suv='sudo vim'
+alias suv='sudo v'
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
