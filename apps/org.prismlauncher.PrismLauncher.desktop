@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Prism Launcher
+Type=Application
+Terminal=false
+Exec=prismlauncher %U -d .prism
+StartupNotify=true
+Icon=org.prismlauncher.PrismLauncher
+StartupWMClass=PrismLauncher
+MimeType=application/zip;application/x-modrinth-modpack+zip;x-scheme-handler/curseforge;x-scheme-handler/prismlauncher;
