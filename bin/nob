@@ -1,4 +1,4 @@
 #!/bin/sh
 [ -f nob ] && exec ./nob "$@"
-[ -f nob.c ] && cc nob.c -o nob && exec ./nob "$@"
+[ -f nob.c ] && exec tcc -run nob.c
 echo "nob not found"
