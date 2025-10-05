@@ -1,0 +1,34 @@
+#!/bin/bash
+NOTE_DIR="$HOME/notes"
+
+print_help() {
+  echo "usage: note [TITLE] [NOTE...]"
+  echo "note directory: '$NOTE_DIR'"
+}
+
+if [ "$1" = "--help" ]; then
+  print_help
+  exit 0
+fi
+
+mkdir -p "$NOTE_DIR"
+
+if [ -z "$1" ]; then
+  cd "$NOTE_DIR"
+  find . -type f -printf "%P\n" | while IFS= read -r file; do
+      echo -e "\e[33m$file\e[m:"
+      cat "$file"
+  done
+  exit 0
+fi
+
+if [[ -z "$2" ]]; then
+  print_help
+  exit 0
+fi
+
+TITLE="$1"
+CONTENT="${@:2}"
+
+echo "Saved note: $TITLE"
+echo "$CONTENT" > "$NOTE_DIR/$TITLE"
