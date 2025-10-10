@@ -26,9 +26,6 @@ alias dl='cd ~/dl; ls'
 alias shut='sudo poweroff'
 alias rebo='sudo reboot'
 
-alias update='sudo xbps-install -Su'
-alias inst='sudo xbps-install'
-
 alias cb='xclip -selection clipboard'
 
 alias procs='ps aux'
