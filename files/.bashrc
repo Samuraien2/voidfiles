@@ -27,7 +27,7 @@ alias shut='sudo poweroff'
 alias rebo='sudo reboot'
 
 alias cb='xclip -selection clipboard'
-
+alias gc='git clone --depth=1'
 alias procs='ps aux'
 
 alias ?='which'
